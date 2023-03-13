@@ -69,14 +69,16 @@ Mais ce n'est pas une _VM_!
 
 --
 
-### Virtualisation au niveau du système d'exploitation
-
-- Limitation des resources utilisables
-- Limitation de ce qui est vu
+### Demo 1: un _container_ et son _host_
 
 --
 
-### Demo 1: un _container_ et son _host_
+### Virtualisation au niveau du système d'exploitation
+
+- Contraintes des resources
+  - CPU, mémoire, réseau...
+- Contraintes de sécurité
+  - Ce qu'il peut voir, faire...
 
 ---
 
@@ -84,16 +86,42 @@ Mais ce n'est pas une _VM_!
 
 --
 
-### Historique
+### Architecture
 
-- 
+![Architecture de Docker](img/docker_arch.png) <!-- .element height="80%" width="80%" -->
 
 --
 
-### Quelques définitions
+### Architecture
 
-- _Image_: 
-- _Container_: 
+- client/server
+  - CLI: _docker_
+  - Server: _dockerd_
+- REST API
+
+--
+
+### Demo 2: _docker_ CLI
+
+--
+
+### Quelques définitions...
+
+- _Image_: instructions pour créer un _container_
+- _Container_: instance executable d'une _image_
+
+--
+
+### Architecture
+
+```mermaid
+flowchart LR
+
+A[Hard] -->|Text| B(Round)
+B --> C{Decision}
+C -->|One| D[Result 1]
+C -->|Two| E[Result 2]
+```
 
 ---
 
