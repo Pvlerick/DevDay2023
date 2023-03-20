@@ -98,13 +98,6 @@ une boîte isolée ou s'executent un ou plusieurs processus
 
 ### Demos: un _container_ et son _host_
 
---
-
-### Quelques définitions...
-
-- _Image_: instructions pour créer un _container_
-- _Container_: instance executable d'une _image_
-
 ---
 
 ## Docker
@@ -142,13 +135,40 @@ Note: docker run & snap_ps
 
 --
 
+### _runc_
+<small>https://github.com/opencontainers/runc</small>
+
+- _OCI Container Runtime_
+- https://github.com/opencontainers/runtime-spec/blob/main/runtime.md
+- Alternative: _crun_
+
+--
+
+### Demo: _runc_ & _crun_
+
+--
+
+### _shim_
+
+- Démarre _runc_
+- Rapporte l'état à _containerd_
+
+--
+
+### Demo: _shim_
+
+--
+
 ### _containerd_
 
 <small>https://github.com/containerd/containerd</small>
 
 - _Container Runtime_
+- Prépare le _bundle_ requis par l'_OCI Container Runtime_
+  - creer le fichier _config.json_
+  - configurer/monter le _rootfs_
 - Gère le cycle de vie des _containers_
-- Alternative: CRI-O
+- "Alternative": CRI-O
 
 --
 
@@ -156,25 +176,36 @@ Note: docker run & snap_ps
 
 --
 
-### _runc_
+## _Moby_
 
-<small>https://github.com/opencontainers/runc</small>
-
-- _OCI Container Runtime_
-  - <small>https://github.com/opencontainers/runtime-spec/blob/main/runtime.md</small>
-- Alternative: _crun_
+![Moby](/img/moby-project-logo.png)
 
 --
 
-Demo: _runc_ & _crun_
-
----
-
-## Les containers Linux
+- Blocs open-source extraits de _docker_
+  - résultat de l'éclatement de _docker_ en plus petits composants
+  - neutres
 
 ---
 
 ## Les containers Windows
+
+--
+
+Deux types d'isolation
+- _process_
+  - isolation au niveau du noyau
+- _hyperv_
+  - une VM par _container_
+  - pas de gestion explicite
+
+--
+
+### Demo: containers _process_
+
+--
+
+### Demo: containers _hyperv_
 
 ---
 

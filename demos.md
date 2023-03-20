@@ -5,6 +5,7 @@
 
 ```
 docker run -it --rm alpine
+ctrl-z ctrl-c
 ```
 
 ```
@@ -15,16 +16,16 @@ kill $(pidof vi)
 ### Windows
 
 ```
-docker run --rm -it mcr.microsoft.com/windows/nanoserver:ltsc2022
+docker run --rm -it ns
 ```
 
-ctrl-alt-end
 ping -t localhost
+pslist64.exe -accepteula
+
+ctrl-alt-end
 ctrl-p ctrl-q
 \\?\Volume{XXX}\Windows\System32
 type
-
-pslist64.exe -accepteula
 
 ## Demo: _docker_ CLI
 
@@ -37,8 +38,32 @@ docker ps -a
 snap_ps
 docker run -it --rm alpine
 
+## Demo: _runc_ & _crun_
+
+runc --help
+runc list --root /var/run/docker/runtime-runc/moby
+runc --root /var/run/docker/runtime-runc/moby state <CID>
+
+/etc/docker/config.json
+crun --help
+
+## Demo: _shim_
+
+kill $(pidof dockerd)
+
 ## Demo: _containerd_
 
-/var/run/docker/containerd/daemon/io.containerd.runtime.v2.task/moby/
+/var/run/docker/containerd/daemon/io.containerd.runtime.v2.task/moby/<CID>/config.json
+cat config.json | jq .linux.resources.cpu
+cat config.json | jq .linux.cgroupsPath
+cat config.json | jq .linux.namespaces
 
-## Demo: _runc_ & _crun_
+cat /proc/<PID>/cgroup
+
+## Demo
+
+docker run -it --rm --cpus=0.5 stress
+stress -c 1
+docker exec -it $(docker ps -lq) /bin/bash
+
+## Demo: containers _hyperv_
