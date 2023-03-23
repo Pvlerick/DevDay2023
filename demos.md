@@ -38,11 +38,20 @@ docker ps -a
 snap_ps
 docker run -it --rm alpine
 
-## Demo: _runc_ & _crun_
+## Demo: _runc_
 
 runc --help
 runc list --root /var/run/docker/runtime-runc/moby
 runc --root /var/run/docker/runtime-runc/moby state <CID>
+
+docker create alpine
+docker export $(docker ps -lq) -o alpine.tar
+mkdir rootfs
+tar -C rootfs -xf alpine.tar
+runc spec
+vi config.json
+runc run container
+runc run --detach container
 
 /etc/docker/config.json
 crun --help
@@ -53,17 +62,22 @@ kill $(pidof dockerd)
 
 ## Demo: _containerd_
 
-/var/run/docker/containerd/daemon/io.containerd.runtime.v2.task/moby/<CID>/config.json
-cat config.json | jq .linux.resources.cpu
-cat config.json | jq .linux.cgroupsPath
-cat config.json | jq .linux.namespaces
-
-cat /proc/<PID>/cgroup
+docker run -it --rm --entrypoint "/bin/ping" alpine -c 600 localhost
 
 ## Demo
 
 docker run -it --rm --cpus=0.5 stress
 stress -c 1
 docker exec -it $(docker ps -lq) /bin/bash
+top
+
+jq .root.path
+/var/lib/docker/overlay2/<CID>/merged/
+/var/lib/docker/overlay2/<CID>/diff/
+
+## Demo: containers _process_
+
+docker 
 
 ## Demo: containers _hyperv_
+

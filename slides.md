@@ -15,7 +15,6 @@ Philippe Vlérick
 - Introduction
 - Les _containers_ en bref
 - Docker
-- _Containers_ Linux
 - _Containers_ Windows
 
 --
@@ -144,7 +143,7 @@ Note: docker run & snap_ps
 
 --
 
-### Demo: _runc_ & _crun_
+### Demo: _runc_
 
 --
 
@@ -152,6 +151,7 @@ Note: docker run & snap_ps
 
 - Démarre _runc_
 - Rapporte l'état à _containerd_
+- STDIN et STDOUT
 
 --
 
@@ -198,10 +198,6 @@ Deux types d'isolation
 - _hyperv_
   - une VM par _container_
   - pas de gestion explicite
-
---
-
-### Demo: containers _process_
 
 --
 
